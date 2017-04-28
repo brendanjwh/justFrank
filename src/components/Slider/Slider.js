@@ -7,10 +7,10 @@ require('./style.scss');
 
 /* To Do */
 /*
-  => Dot Functionality should be next
+  => Dot Functionality
   => User is now able to cycle through all images, back and forth.
-     However, I am concerned that using only one slide component won't work
-     with react transitions, but I am not sure yet.
+     It's possible that inside the child "Slide" component that the react transition
+     can be applied to wrap that component. Perhaps there is another way? Not sure yet. 
 */
 
 export default class Slider extends Component {
