@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
+import Dot from './Dot';
 
 const Dots = (props) => {
+
+  const numberOfDots = []
+
+  for(let i = 0; i < props.numberOfDots; i++) {
+    numberOfDots.push(<Dot />)
+  }
+
   return (
     <div className="dotsContainer">
-      <span className={props.slideCount === 1 ? "active dot" : "dot"}></span>
-      <span className={props.slideCount === 2 ? "active dot" : "dot"}></span>
-      <span className={props.slideCount === 3 ? "active dot" : "dot"}></span>
+      {numberOfDots}
     </div>
-  );
+  )
 }
 
-export default Dots;
+export default Dots

@@ -10,7 +10,7 @@ require('./style.scss');
   => Dot Functionality
   => User is now able to cycle through all images, back and forth.
      It's possible that inside the child "Slide" component that the react transition
-     can be applied to wrap that component. Perhaps there is another way? Not sure yet. 
+     can be applied to wrap that component. Perhaps there is another way? Not sure yet.
 */
 
 export default class Slider extends Component {
@@ -55,9 +55,15 @@ export default class Slider extends Component {
         {/* There are no more individual slides, you only need one Slide Component */}
         <Slide background={this.state.background} current={this.state.current} />
 
-        {/* Arrow Functionality */}
+        {/* Arrows*/}
         <LeftArrow previousSlide={this.previousSlide} />
         <RightArrow nextSlide={this.nextSlide} />
+
+        {/* Dots */}
+        <Dots
+          numberOfDots={this.state.background.length}
+         />
+
       </div>
     );
   }
