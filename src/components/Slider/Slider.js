@@ -5,29 +5,40 @@ import LeftArrow from './LeftArrow';
 import Dots from './Dots';
 require('./style.scss');
 
-/* To Do */
 /*
-  => Dot Functionality
-  => User is now able to cycle through all images, back and forth.
-     It's possible that inside the child "Slide" component that the react transition
-     can be applied to wrap that component. Perhaps there is another way? Not sure yet.
+To Do
+
+  => Make dots clickable
+
 */
 
 export default class Slider extends Component {
   constructor(props) {
     super(props);
 
-    // User just needs to set the name of each picture in whatever order they would like.
-    // This array is passed down to the child Slide as props.
     this.state = {
       background: ['aurora','canyon','martin'],
       current: 0
     }
-
     this.previousSlide = this.previousSlide.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
   }
 
+  render() {
+    return (
+      <div className="slider">
+        <Slide background={this.state.background} current={this.state.current} />
+        <LeftArrow previousSlide={this.previousSlide} />
+        <RightArrow nextSlide={this.nextSlide} />
+        <Dots
+          numberOfDots={this.state.background.length}
+          isCurrent={this.state.current}
+         />
+      </div>
+    );
+  }
+
+  /* Previous & Next Slide Functionality */
   previousSlide() {
     let current = this.state.current;
     let imageArray = this.state.background.length - 1;
@@ -49,23 +60,4 @@ export default class Slider extends Component {
     }
   }
 
-  render() {
-    return (
-      <div className="slider">
-        {/* There are no more individual slides, you only need one Slide Component */}
-        <Slide background={this.state.background} current={this.state.current} />
-
-        {/* Arrows*/}
-        <LeftArrow previousSlide={this.previousSlide} />
-        <RightArrow nextSlide={this.nextSlide} />
-
-        {/* Dots */}
-        <Dots
-          numberOfDots={this.state.background.length}
-          isCurrent={this.state.current}
-         />
-
-      </div>
-    );
-  }
-}
+} // end class
