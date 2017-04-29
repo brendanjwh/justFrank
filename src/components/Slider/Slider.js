@@ -30,14 +30,15 @@ export default class Slider extends Component {
   render() {
     return (
       <div className="slider">
+        {/* The Current Image*/}
         <Slide
           background={this.state.background}
           current={this.state.current}
         />
-
+        {/* Arrows */}
         <LeftArrow previousSlide={this.previousSlide} />
         <RightArrow nextSlide={this.nextSlide} />
-
+        {/* Dots */}
         <Dots
           numberOfDots={this.state.background.length}
           isCurrent={this.state.current}
