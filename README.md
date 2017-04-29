@@ -1,4 +1,4 @@
-<h1> React Slider
+<h1> React Slider</h1>
 <p>Working version <a href="https://react-slider.herokuapp.com/" target="_blank">here</a></p>
 
 Installation<br>
