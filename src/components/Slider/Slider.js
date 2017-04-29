@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+//import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup' Not even sure where to put this yet
 import Slide from './Slide';
 import RightArrow from './RightArrow';
 import LeftArrow from './LeftArrow';
@@ -31,6 +32,7 @@ export default class Slider extends Component {
     return (
       <div className="slider">
         <Slide background={this.state.background} current={this.state.current} />
+
         <LeftArrow previousSlide={this.previousSlide} />
         <RightArrow nextSlide={this.nextSlide} />
         <Dots

@@ -3,11 +3,11 @@ import Dot from './Dot';
 
 const Dots = (props) => {
 
-  const numberOfDots = [];
+  let numberOfDots = [];
 
   for(let i = 0; i < props.numberOfDots; i++) {
     let name = (props.isCurrent === i) ? "isCurrent dot" : "dot";
-    numberOfDots.push(<Dot name={name} dotClick={props.dotClick} dotIndex={i} />)
+    numberOfDots.push(<Dot key={i} name={name} dotClick={props.dotClick} dotIndex={i} />)
   }
 
   return (
