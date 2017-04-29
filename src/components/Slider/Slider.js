@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup' Not even sure where to put this yet
 import Slide from './Slide';
 import RightArrow from './RightArrow';
 import LeftArrow from './LeftArrow';
@@ -12,6 +11,7 @@ To Do
   => Heroku auto-push needs to be fixed
   => The images need to be preloaded somehow. Reason being, is that the first time the user goes through the
      slider, the images have to load and sometimes give you a gross looking flash of white before the image appears
+  => Create new branch, and instead have all the necessary data load from a .json file, instead of inside the component
 
 */
 
@@ -31,10 +31,14 @@ export default class Slider extends Component {
   render() {
     return (
       <div className="slider">
-        <Slide background={this.state.background} current={this.state.current} />
+        <Slide
+          background={this.state.background}
+          current={this.state.current}
+        />
 
         <LeftArrow previousSlide={this.previousSlide} />
         <RightArrow nextSlide={this.nextSlide} />
+
         <Dots
           numberOfDots={this.state.background.length}
           isCurrent={this.state.current}
