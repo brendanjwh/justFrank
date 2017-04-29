@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-const Dot = () => {
-  return <span className="dot"></span>
+const Dot = ({ name }) => {
+  return <span className={name}></span>
 }
 
 export default Dot;

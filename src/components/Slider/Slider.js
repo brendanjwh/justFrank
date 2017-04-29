@@ -62,6 +62,7 @@ export default class Slider extends Component {
         {/* Dots */}
         <Dots
           numberOfDots={this.state.background.length}
+          isCurrent={this.state.current}
          />
 
       </div>

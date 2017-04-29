@@ -6,7 +6,9 @@ const Dots = (props) => {
   const numberOfDots = []
 
   for(let i = 0; i < props.numberOfDots; i++) {
-    numberOfDots.push(<Dot />)
+    console.log("current: " + props.isCurrent + " " + "i: " + i)
+    let name = (props.isCurrent === i) ? "isCurrent dot" : "dot";
+    numberOfDots.push(<Dot name={name} />)
   }
 
   return (
