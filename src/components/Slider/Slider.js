@@ -8,7 +8,6 @@ require('./style.scss');
 /*
 To Do
 
-  => Heroku auto-push needs to be fixed
   => The images need to be preloaded somehow. Reason being, is that the first time the user goes through the
      slider, the images have to load and sometimes give you a gross looking flash of white before the image appears
   => Create new branch, and instead have all the necessary data load from a .json file, instead of inside the component
