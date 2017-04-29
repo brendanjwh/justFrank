@@ -1,3 +1,6 @@
+<h1> React Slider
+<p>Working version <a href="https://react-slider.herokuapp.com/" target="_blank">here</a></p>
+
 Installation<br>
 1.) <code>npm install</code> <br>
 2.) <code>npm start</code> <br>
