@@ -8,9 +8,9 @@ require('./style.scss');
 /*
 To Do
 
-  => Make dots clickable
   => Heroku auto-push needs to be fixed
-  => The images need to be preloaded somehow. Hopefully this won't ruin my plan of using only one slide
+  => The images need to be preloaded somehow. Reason being, is that the first time the user goes through the
+     slider, the images have to load and sometimes give you a gross looking flash of white before the image appears
 
 */
 
@@ -24,6 +24,7 @@ export default class Slider extends Component {
     }
     this.previousSlide = this.previousSlide.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
+    this.dotClick = this.dotClick.bind(this);
   }
 
   render() {
@@ -35,9 +36,15 @@ export default class Slider extends Component {
         <Dots
           numberOfDots={this.state.background.length}
           isCurrent={this.state.current}
+          dotClick={this.dotClick}
          />
       </div>
     );
+  }
+
+  /* Handle cLicking of dots */
+  dotClick(dotIndex) {
+    this.setState({ current: dotIndex })
   }
 
   /* Previous & Next Slide Functionality */
