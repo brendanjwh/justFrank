@@ -9,6 +9,8 @@ require('./style.scss');
 To Do
 
   => Make dots clickable
+  => Heroku auto-push needs to be fixed
+  => The images need to be preloaded somehow. Hopefully this won't ruin my plan of using only one slide
 
 */
 
