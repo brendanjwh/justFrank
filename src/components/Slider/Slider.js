@@ -1,30 +1,40 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Slide from './Slide';
 import RightArrow from './RightArrow';
 import LeftArrow from './LeftArrow';
 import Dots from './Dots';
 require('./style.scss');
 
-/*
-To Do
-
-  => The images need to be preloaded somehow. Reason being, is that the first time the user goes through the
-     slider, the images have to load and sometimes give you a gross looking flash of white before the image appears
-  => Create new branch, and instead have all the necessary data load from a .json file, instead of inside the component
-
-*/
 
 export default class Slider extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      background: ['aurora','canyon','martin'],
+      background: [],
       current: 0
     }
     this.previousSlide = this.previousSlide.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
     this.dotClick = this.dotClick.bind(this);
+  }
+
+  // Pulls in config data for the slider from .json file
+  componentWillMount() {
+    axios.get('slider-config.json')
+    .then((res) => {
+      this.setImageArray(res.data);
+    });
+  }
+
+  // Sets the background state property to the array of images pulled in from the componentWillMount method
+  setImageArray(imageArray) {
+    let newArray = [];
+    for(let i = 0; i < imageArray.length; i++) {
+      newArray.push(imageArray[i].image);
+    }
+    this.setState({ background: newArray });
   }
 
   render() {
