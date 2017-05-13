@@ -45,7 +45,7 @@ export default class Slider extends Component {
 
     if( (current != undefined) && (current < background.length - 1) )
       return (
-        <div style={{display: 'none', backgroundImage: `url(${(this.state.background[this.state.current + 1])}.jpg)`}}></div>
+        <div style={{display: 'none', height:'100%', backgroundImage: `url(${(this.state.background[this.state.current + 1])}.jpg)`}}></div>
       )
     else
       return null
