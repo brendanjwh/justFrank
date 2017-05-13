@@ -13,7 +13,8 @@ export default class Slider extends Component {
 
     this.state = {
       background: [],
-      current: undefined
+      current: undefined,
+      ready: false
     }
     this.previousSlide = this.previousSlide.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
@@ -35,16 +36,19 @@ export default class Slider extends Component {
     for(let i = 0; i < imageArray.length; i++) {
       newArray.push(imageArray[i].image);
     }
-    this.setState({ background: newArray, current: 0 });
+    this.setState({ background: newArray, current: 0, ready: true });
   }
 
   preloadNextImage() {
-    if(this.state.current != undefined)
+    let current = this.state.current;
+    let background = this.state.background;
+
+    if( (current != undefined) && (current < background.length - 1) )
       return (
         <div style={{display: 'none', backgroundImage: `url(${(this.state.background[this.state.current + 1])}.jpg)`}}></div>
       )
     else
-      return <div></div>;
+      return null
   }
 
   render() {
@@ -52,10 +56,16 @@ export default class Slider extends Component {
     return (
       <div className="slider">
         {/* The Current Image*/}
-        <Slide
-          background={this.state.background}
-          current={this.state.current}
-        />
+        {
+          this.state.ready ?
+          <Slide
+            background={this.state.background}
+            current={this.state.current}
+            ready={this.state.ready}
+          />
+          : null
+        }
+
         {/* Arrows */}
         <LeftArrow previousSlide={this.previousSlide} />
         <RightArrow nextSlide={this.nextSlide} />
