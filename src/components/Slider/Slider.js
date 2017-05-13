@@ -13,11 +13,12 @@ export default class Slider extends Component {
 
     this.state = {
       background: [],
-      current: 0
+      current: undefined
     }
     this.previousSlide = this.previousSlide.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
     this.dotClick = this.dotClick.bind(this);
+    this.preloadNextImage = this.preloadNextImage.bind(this);
   }
 
   // Pulls in config data for the slider from .json file
@@ -34,10 +35,20 @@ export default class Slider extends Component {
     for(let i = 0; i < imageArray.length; i++) {
       newArray.push(imageArray[i].image);
     }
-    this.setState({ background: newArray });
+    this.setState({ background: newArray, current: 0 });
+  }
+
+  preloadNextImage() {
+    if(this.state.current != undefined)
+      return (
+        <div style={{display: 'none', backgroundImage: `url(${(this.state.background[this.state.current + 1])}.jpg)`}}></div>
+      )
+    else
+      return <div></div>;
   }
 
   render() {
+
     return (
       <div className="slider">
         {/* The Current Image*/}
@@ -54,6 +65,8 @@ export default class Slider extends Component {
           isCurrent={this.state.current}
           dotClick={this.dotClick}
          />
+
+         {this.preloadNextImage()}
       </div>
     );
   }
