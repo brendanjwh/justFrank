@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Slide from './Slide';
-import RightArrow from './RightArrow';
-import LeftArrow from './LeftArrow';
-import Dots from './Dots';
-require('./style.scss');
-
+import React, { Component } from "react";
+import axios from "axios";
+import Slide from "./Slide";
+import RightArrow from "./RightArrow";
+import LeftArrow from "./LeftArrow";
+import Dots from "./Dots";
+require("./style.scss");
 
 export default class Slider extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ export default class Slider extends Component {
       background: [],
       current: undefined,
       ready: false
-    }
+    };
     this.previousSlide = this.previousSlide.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
     this.dotClick = this.dotClick.bind(this);
@@ -24,16 +23,19 @@ export default class Slider extends Component {
 
   // Pulls in config data for the slider from .json file
   componentWillMount() {
-    axios.get('slider-config.json')
-    .then((res) => {
+    axios.get("slider-config.json").then(res => {
       this.setImageArray(res.data);
     });
+  }
+
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
   }
 
   // Sets the background state property to the array of images pulled in from the componentWillMount method
   setImageArray(imageArray) {
     let newArray = [];
-    for(let i = 0; i < imageArray.length; i++) {
+    for (let i = 0; i < imageArray.length; i++) {
       newArray.push(imageArray[i].image);
     }
     this.setState({ background: newArray, current: 0, ready: true });
@@ -43,28 +45,32 @@ export default class Slider extends Component {
     let current = this.state.current;
     let background = this.state.background;
 
-    if( (current != undefined) && (current < background.length - 1) )
+    if (current != undefined && current < background.length - 1)
       return (
-        <div style={{display: 'none', height:'100%', backgroundImage: `url(${(this.state.background[this.state.current + 1])}.jpg)`}}></div>
-      )
-    else
-      return null
+        <div
+          style={{
+            display: "none",
+            height: "100%",
+            backgroundImage: `url(${this.state.background[
+              this.state.current + 1
+            ]}.jpg)`
+          }}
+        />
+      );
+    else return null;
   }
 
   render() {
-
     return (
       <div className="slider">
         {/* The Current Image*/}
-        {
-          this.state.ready ?
+        {this.state.ready ? (
           <Slide
             background={this.state.background}
             current={this.state.current}
             ready={this.state.ready}
           />
-          : null
-        }
+        ) : null}
 
         {/* Arrows */}
         <LeftArrow previousSlide={this.previousSlide} />
@@ -74,16 +80,16 @@ export default class Slider extends Component {
           numberOfDots={this.state.background.length}
           isCurrent={this.state.current}
           dotClick={this.dotClick}
-         />
+        />
 
-         {this.preloadNextImage()}
+        {this.preloadNextImage()}
       </div>
     );
   }
 
   /* Handle cLicking of dots */
   dotClick(dotIndex) {
-    this.setState({ current: dotIndex })
+    this.setState({ current: dotIndex });
   }
 
   /* Previous & Next Slide Functionality */
@@ -91,21 +97,18 @@ export default class Slider extends Component {
     let current = this.state.current;
     let imageArray = this.state.background.length - 1;
 
-    if(current >= 1)
-      this.setState({ current: current - 1 })
-    if(current === 0)
-      this.setState({ current: imageArray })
+    if (current >= 1) this.setState({ current: current - 1 });
+    if (current === 0) this.setState({ current: imageArray });
   }
 
   nextSlide() {
     let current = this.state.current;
     let imageArray = this.state.background.length - 1;
 
-    if((current >= 0) && (current !== imageArray))
-      this.setState({ current: current + 1 })
-    if(current === imageArray) {
-      this.setState({ current: 0 })
+    if (current >= 0 && current !== imageArray)
+      this.setState({ current: current + 1 });
+    if (current === imageArray) {
+      this.setState({ current: 0 });
     }
   }
-
 } // end class
