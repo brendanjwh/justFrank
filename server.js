@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, "dist")));
 
 // Serve index.html in dist folder
 app.get("*", function(request, response) {
-  response.sendFile(__dirname + "/index.html");
+  response.sendFile(__dirname + "/dist/index.html");
 });
 
 app.listen(PORT, function(error) {
